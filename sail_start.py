@@ -20,7 +20,7 @@ session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-
+GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback)
 
 # Logs coords
 def log_coords():
@@ -40,7 +40,7 @@ def log_coords():
         except KeyError:
             pass
 
-# On button press, appends current location to list as: np.array([lat, lon])
+# On button press, appends current location to list of line coords. format: np.array([lat, lon])
 def button_callback(channel):
     global line_coords
     line_coords.append(np.array([gps_log[-1][1], gps_log[-1][2]]))
@@ -52,8 +52,6 @@ def button_callback(channel):
 thread_object = threading.Thread(target=log_coords)
 thread_object.start()
 print('GPS log thread started.')
-
-GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback)
 
 try:
     while True:

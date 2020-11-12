@@ -12,7 +12,7 @@ from collections import deque
 from dateutil.parser import isoparse
 import logging
 
-logging.basicConfig(filename='MissingCalvinDataLog.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class GPSDatapoint:
     '''A class for storing timestamps and GPS coordinates.'''
@@ -60,6 +60,7 @@ def button_callback(channel):
     '''Saves current position for use in drawing starting line.
     
     The two most recent points are used to determine the starting line.'''
+    logging.debug(gps_log)
     global line_coords, start_point_2
     current_position = gps_log[-1]
     if len(line_coords) == 0 or current_position.lattitude != line_coords[-1].lattitude or current_position.longitude != line_coords[-1].longitude: # Ensure new line point is different from previous to prevent dividing by zero in calculations.
@@ -114,6 +115,7 @@ GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback, bouncetime = 
 thread_object = threading.Thread(target=log_coords)
 thread_object.start()
 print('GPS log thread started.')
+logging.debug(gps_log)
 
 try:
     while len(gps_log) > 1:

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Use: Pushing button defines two points of a line
 # LCD will display distance and velocity relative to the line 
 
@@ -20,7 +22,6 @@ session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback)
 
 # Logs coords
 def log_coords():
@@ -30,12 +31,14 @@ def log_coords():
             report = session.next()
             # print(report)
             if report['class'] == 'TPV':
+                # print(report)
                 if hasattr(report, 'time'):
                     timestamp = report.time
                 if hasattr(report, 'lat'):
                     lat = round(report.lat, 6)
                 if hasattr(report, 'lon'):
                     lon = round(report.lon, 6)
+                if hasattr(report, 'time') and hasattr(report, 'lat') and hasattr(report, 'lon'):
                     gps_log.append([timestamp, lat, lon])
         except KeyError:
             pass
@@ -48,6 +51,9 @@ def button_callback(channel):
     display.lcd_display_string('Point set.', 1)
     sleep(1)
     display.lcd_clear()
+
+GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback, bouncetime = 1000)
+
 
 thread_object = threading.Thread(target=log_coords)
 thread_object.start()

@@ -53,8 +53,6 @@ def button_callback(channel):
     display.lcd_clear()
 
 GPIO.add_event_detect(25, GPIO.RISING, callback = button_callback, bouncetime = 1000)
-
-
 thread_object = threading.Thread(target=log_coords)
 thread_object.start()
 print('GPS log thread started.')
@@ -67,7 +65,7 @@ try:
             display.lcd_display_string(f'lon: {gps_log[-1][2]}', 2)
             sleep(1)
         # After line is drawn, displays distance and... 
-        # TODO:velocity relative to the line.
+        # TODO: velocity relative to the line.
         else:
             start_point_1 = np.array([0,0]) # Origin (line_coords[-2] - line_coords[-2])
             start_point_2 = np.array(line_coords[-1] - line_coords[-2]) * degrees_to_meters_conversion # relative to origin, converts degrees to meters

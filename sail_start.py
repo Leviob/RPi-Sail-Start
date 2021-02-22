@@ -69,8 +69,8 @@ def find_distance_and_velocity():
     # debugging:
     logging.debug(f'current_coords:                  {[current_coords.timestamp, current_coords.lattitude, current_coords.longitude]}')
     logging.debug(f'gps_log[-1] (same as cur coord) :{[gps_log[-1].timestamp, gps_log[-1].lattitude, gps_log[-1].longitude]}')
-    logging.debug(f'gps_log[-2] (same as cur coord) :{[gps_log[-2].timestamp, gps_log[-2].lattitude, gps_log[-2].longitude]}')
-    logging.debug(f'gps_log[-3] (same as cur coord) :{[gps_log[-3].timestamp, gps_log[-3].lattitude, gps_log[-3].longitude]}')
+    logging.debug(f'gps_log[-2]                     :{[gps_log[-2].timestamp, gps_log[-2].lattitude, gps_log[-2].longitude]}')
+    logging.debug(f'gps_log[-3]                     :{[gps_log[-3].timestamp, gps_log[-3].lattitude, gps_log[-3].longitude]}')
     
     origin = np.array([line_coords[-2].lattitude, line_coords[-2].longitude]) # degrees lat, lon
     current_location = (np.array([gps_log[-1].lattitude, gps_log[-1].longitude]) - origin) * degrees_to_meters_conversion 

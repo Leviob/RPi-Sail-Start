@@ -32,7 +32,7 @@ display = lcddriver.lcd()
 line_coords = []
 gps_log = [] # list of all GPS positions
 distance_to_line_log = deque([], maxlen = 2)
-velocity_queue = deque([], maxlen = 3) # Three most recent distances to line; for calculating velocity
+velocity_queue = deque([], maxlen = 5) # Three most recent distances to line; for calculating velocity
 start_line_point_2 = None
 degrees_to_meters_conversion = np.array([111190, 74625]) # Only at lattitudes near Everett.
 prev_time = None

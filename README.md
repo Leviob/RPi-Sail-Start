@@ -13,7 +13,7 @@ The components of the system include a Raspberry Pi, GPS unit, LCD display, batt
 
 ### 1 - Drawing The Line
 First, I'm initializing one endpoint, walking a bit, and initializing the second endpoint.
-
+https://user-images.githubusercontent.com/59812528/108650400-58d03300-7474-11eb-895b-ff33ddaa6226.mp4
 
 ### 2 - Walking Perpendicular To The Line
 Once the line in plotted, walking perpendicular to the line will give my actual velocity (negative, because I'm walking away from the line) and distance.

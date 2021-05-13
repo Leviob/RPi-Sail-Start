@@ -19,13 +19,17 @@ First, I'm initializing one endpoint, walking a bit, and initializing the second
 
 ### 2 - Walking Perpendicular To The Line
 Once the line in plotted, walking perpendicular to the line will give my actual velocity (negative, because I'm walking away from the line) and distance.
+
 [![Video of walking away](https://user-images.githubusercontent.com/59812528/108652216-72737980-7478-11eb-8138-c21c4104a9e6.png)](https://user-images.githubusercontent.com/59812528/108652202-6ab3d500-7478-11eb-91da-7c31f6e96e4c.mp4 "Walking Away Video")
 
 
 ### 3 - Walking Parallel To The Line
 Walking Parallel to the line, my velocity and distance remain close to zero. 
+
 [![Video of walking parallel](https://user-images.githubusercontent.com/59812528/108652132-40faae00-7478-11eb-89f1-bcdaa31b38d1.png)](https://user-images.githubusercontent.com/59812528/108651765-591dfd80-7477-11eb-8a70-ac3d395446c2.mp4 "Walking Parallel Video")
 
 The velocity is calculated relative to the line. Therefore, moving 30° relative to the line, the displayed velocity will be half of the actual velocity. 
 
-Additional features I plan on adding include a timer to measure time until the race starts, and combining this with the velocity data to directly inform whether speed adjustments are necessary. 
+## Potential Improvements
+
+Right now, the GPS coordinates update much too slow to be useful in an actual race. Perhaps a higher quality GPS or antenna will mitigate this. I also have an idea to use accelerometers to measure short distances while awaiting GPS feedback. I plan on adding a timer to measure time until the race starts, and combining this with the velocity data to directly inform whether speed adjustments are necessary. 
